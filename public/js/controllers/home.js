@@ -1,4 +1,4 @@
-angular.module('HomeCtrl', []).controller('HomeController', function($scope, $http) {
+angular.module('HomeCtrl', []).controller('HomeController', function($scope) {
 
 	$scope.tagline = 'TEST HOME CONTROLLER';
 
