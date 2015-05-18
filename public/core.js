@@ -1,7 +1,9 @@
 // public/core.js
 var arrgAttendance = angular.module('arrgAttendance', []);
 
-function mainController($scope, $http) {
+angular.module('arrgAttendance', ['ngRoute', 'appRoutes', 'MainController', 'HomeController', 'attendanceService']);
+
+/* function mainController($scope, $http) {
     $scope.formData = {};
 
     // when landing on the page, get all players and show them
@@ -39,4 +41,4 @@ function mainController($scope, $http) {
             });
     };
 
-}
+} */

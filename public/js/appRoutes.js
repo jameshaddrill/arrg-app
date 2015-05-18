@@ -10,7 +10,7 @@
 
 		.when('/register', {
 			templateUrl: 'views/register.html',
-			controller: 'mainController'
+			controller: 'MainController'
 		});
 
 	$locationProvider.html5Mode(true);

@@ -2,7 +2,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="arrgAttendance">
+<html>
 <head>
     <!-- META -->
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
 
     <title>ARRG Attendance</title>
 
-    <!-- SCROLLS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
     <style>
         html                    { overflow-y:scroll; }
@@ -18,15 +18,24 @@
         #name-list              { margin-bottom:30px; }
     </style>
 
-    <!-- SPELLS -->
+    <!-- SCRIPTS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/services/players.js"></script>
+    <script src="js/appRoutes.js"></script>
+
     <script src="core.js"></script>
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL PLAYERS -->
-<body ng-controller="mainController">
+<body ng-app="arrgAttendance" ng-controller="mainController">
     <div class="container">
+        <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view></div>
 
         <!-- HEADER -->
         <div class="jumbotron text-center">
