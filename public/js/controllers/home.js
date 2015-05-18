@@ -1,5 +1,6 @@
-angular.module('HomeCtrl', []).controller('HomeController', function($scope) {
+angular.module('HomeCtrl', []).controller('HomeController', function($scope, $http) {
 
-	$scope.tagline = 'TEST HOME CONTROLLER';
+
+	$scope = 'TEST HOME CONTROLLER';
 
 });

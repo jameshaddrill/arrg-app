@@ -2,12 +2,27 @@
         <div id="name-list" class="row">
             <div class="col-sm-4 col-sm-offset-4">
 
-                <!-- LOOP OVER THE PLAYERS IN $scope.players -->
-                <div class="checkbox" ng-repeat="player in players">
-                    <label>
-                        <input type="checkbox" ng-click="deletePlayer(player._id)"> {{ player.text }} {{player.level }}
-                    </label>
+                <div class="filterBox">
+                    <select ng-model="filterBy">
+                        <option selected="selected" value="">All</option>
+                        <option value="INT">Intermediate</option>
+                        <option value="ADV">Advanced</option>
+                    </select>
                 </div>
+
+                <!-- LOOP OVER THE PLAYERS IN $scope.players -->
+                <table>
+                    <tr>
+                        <th>Delete</th>
+                        <th>Player name</th>
+                        <th>Player level</th>
+                    </tr>
+                    <tr ng-repeat="player in players | filter : { 'level' : filterBy } | orderBy : name">
+                        <td><input type="checkbox" ng-click="deletePlayer(player._id)"></td>
+                        <td>{{ player.text }}</td>
+                        <td>{{ player.level }}</td>
+                    </tr>
+                </table>
 
             </div>
         </div>

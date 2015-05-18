@@ -1,7 +1,7 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, Players) {
+angular.module('AttendanceCtrl', []).controller('AttendanceController', function($scope, Players) {
+
 
     $scope.formData = {};
-
 
     // GET =====================================================================
     // when landing on the page, get all players and show them
@@ -10,8 +10,6 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, Pla
     Players.get()
         .success(function(data) {
             $scope.players = data;
-            console.log($scope.players);
-            console.log('test');
         });
 
    // CREATE ==================================================================

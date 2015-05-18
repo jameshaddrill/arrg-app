@@ -1,0 +1,21 @@
+<!-- PLAYER LIST -->
+<div id="name-list" class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+
+        <div class="filterBox">
+            <select ng-model="filterBy">
+                <option selected="selected" value="">All</option>
+                <option value="INT">Intermediate</option>
+                <option value="ADV">Advanced</option>
+            </select>
+        </div>
+
+        <!-- LOOP OVER THE PLAYERS IN $scope.players -->
+        <div class="checkbox" ng-repeat="player in players | filter : { 'level' : filterBy }">
+            <label>
+                <input type="checkbox" ng-click="deletePlayer(player._id)"> {{ player.text }} {{player.level }}
+            </label>
+        </div>
+
+    </div>
+</div>

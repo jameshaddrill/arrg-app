@@ -8,12 +8,17 @@
 			controller: 'HomeController'
 		})
 
-		.when('/register', {
-			templateUrl: 'views/register.html',
+		.when('/admin', {
+			templateUrl: 'views/admin.html',
 			controller: 'MainController'
+		})
+
+		.when('/attendance', {
+			templateUrl: 'views/attendance.html',
+			controller: 'AttendanceController'
 		});
 
 
 
-	$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(false);
 }]);

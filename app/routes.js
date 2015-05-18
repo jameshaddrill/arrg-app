@@ -7,10 +7,6 @@
 
     // api ---------------------------------------------------------------------
 
-        app.get('/', function(request, response) {
-    	  response.send('Hello world');
-    	});
-
 
         // get all players
         app.get('/api/players', function(req, res) {

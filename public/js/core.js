@@ -1,7 +1,7 @@
 // public/core.js
 var arrgAttendance = angular.module('arrgAttendance', []);
 
-angular.module('arrgAttendance', ['ngRoute', 'appRoutes', 'MainCtrl', 'HomeCtrl', 'attendanceService']);
+angular.module('arrgAttendance', ['ngRoute', 'appRoutes', 'MainCtrl', 'HomeCtrl', 'AttendanceCtrl', 'attendanceService']);
 
 //angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService']);
 
