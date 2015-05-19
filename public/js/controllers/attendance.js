@@ -1,4 +1,4 @@
-angular.module('AttendanceCtrl', []).controller('AttendanceController', function($scope, Players) {
+angular.module('AttendanceCtrl', []).controller('AttendanceController', function($scope, Players, Email) {
 
 
     $scope.formData = {};
@@ -11,6 +11,91 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
         .success(function(data) {
             $scope.players = data;
         });
+
+
+    // ADD PLAYER TO 'ATTENDED' LIST
+
+    $scope.selectionOne = [];
+    $scope.selectionTwo = [];
+
+    $scope.toggleSelectionOne = function toggleSelection(playerName) {
+
+        var idx = $scope.selectionOne.indexOf(playerName);
+        var playerIdent = playerName.replace(/\s+/g, '');
+
+        if ($('#' + playerIdent + '2').prop('checked')) {
+
+            $scope.selectionTwo.splice(idx, 1);
+            $('#' + playerIdent + '2').prop('checked',false);
+        }
+
+        // is currently selected
+        if (idx > -1) {
+            $scope.selectionOne.splice(idx, 1);
+        }
+        // is newly selected
+        else {
+            $scope.selectionOne.push(playerName);
+        }
+
+    };
+
+    $scope.toggleSelectionTwo = function toggleSelection(playerName) {
+
+        var idx = $scope.selectionTwo.indexOf(playerName);
+        var playerIdent = playerName.replace(/\s+/g, '');
+
+         if ($('#' + playerIdent + '1').prop('checked')) {
+            $scope.selectionOne.splice(idx, 1);
+            $('#' + playerIdent + '1').prop('checked',false);
+        }
+
+        // is currently selected
+        if (idx > -1) {
+            $scope.selectionTwo.splice(idx, 1);
+        }
+        // is newly selected
+        else {
+            $scope.selectionTwo.push(playerName);
+        }
+    };
+
+    $scope.addAttendance = function() {
+        $("#test .table1").html('');
+        $("#test .table2").html('');
+        // one point table
+        var onePoint = $scope.selectionOne;
+        var arrayLength = parseInt(onePoint.length);
+        for (i=0; i<arrayLength; i++) {
+            $("#test .table1").append('<tr><td>'+onePoint[i]+'</td><td>One Point</td></tr>')
+        }
+
+        // two point table
+        var twoPoint = $scope.selectionTwo;
+        var arrayLength = parseInt(twoPoint.length);
+        for (i=0; i<arrayLength; i++) {
+            $("#test .table2").append('<tr><td>'+twoPoint[i]+'</td><td>Two Points</td></tr>')
+        }
+    };
+
+    $scope.sendEmail = function() {
+
+        console.log('sending started');
+        var from,to,subject,text;
+
+        to=$("#to").val();
+        subject=$("#subject").val();
+        text=$("#test").html();
+        console.log(text);
+        $("#message").text("Sending E-mail...Please wait");
+        $.get("/send",{to:to,subject:subject,text:text},function(data){
+            if(data=="sent") {
+                $("#message").empty().html("Email is been sent at "+to+" . Please check inbox !");
+            }
+        });
+
+    };
+
 
    // CREATE ==================================================================
     // when submitting the add form, send the text to the node API
@@ -41,6 +126,7 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
                 $scope.players = data; // assign our new list of players
             });
     };
+
 
 })
 

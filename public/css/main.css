@@ -23,3 +23,14 @@ table td, table th {
 	min-width: 100px;
 	text-align: center;
 }
+
+.checkbox {
+	padding: 0;
+}
+
+.checkbox input[type='checkbox'] {
+	margin: 0 0 10px;
+	display: inline-block;
+	float: none;
+	padding: 0;
+}

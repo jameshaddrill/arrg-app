@@ -3,5 +3,6 @@
 
     module.exports = mongoose.model('Player', {
         text : String,
+        identifier : String,
         level : String
     });

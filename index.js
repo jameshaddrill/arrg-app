@@ -12,6 +12,7 @@
     var mongoose = require('mongoose');                     // mongoose for mongodb
     var morgan = require('morgan');             // log requests to the console (express4)
     var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
+    var nodemailer = require('nodemailer');     // require nodemailer for sending emails
     var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
     // configuration =================
@@ -19,6 +20,43 @@
     app.set('port', (process.env.PORT || 5000));
 
     var database = require('./config/db');
+
+
+    // nodemailer stuff
+    // http://codeforgeek.com/2014/07/send-e-mail-node-js/
+    // http://blog.ijasoneverett.com/2013/07/emailing-in-node-js-with-nodemailer/
+    var smtpTransport = nodemailer.createTransport("SMTP",{
+       service: "Gmail",  // sets automatically host, port and connection security settings
+       auth: {
+           user: "jameshaddrill@gmail.com",
+           pass: "djkh4882"
+       }
+    });
+
+    app.get('/send', function(req, res) {
+        var mailOptions={
+            to : req.query.to,
+            subject : req.query.subject,
+            text : req.query.text
+        }
+        smtpTransport.sendMail(mailOptions, function(error, response){
+            if(error) {
+                console.log(error);
+                smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+                res.end("error");
+            } else {
+                console.log("Message sent: " + response.message);
+                smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+                res.end("sent");
+            }
+
+
+        });
+
+    });
+
+
+
 
     mongoose.connect(database.url);     // connect to mongoDB database
 
@@ -28,7 +66,6 @@
     app.use(bodyParser.json());                                     // parse application/json
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
-
 
     // load the routes
     require('./app/routes')(app);

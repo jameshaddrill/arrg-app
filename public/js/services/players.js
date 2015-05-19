@@ -14,4 +14,11 @@ angular.module('attendanceService', [])
                 return $http.delete('/api/players/' + id);
             }
         }
+    }])
+    .factory('Email', ['$http', function($http) {
+        return {
+            get: function() {
+                return $http.get('/api/send');
+            }
+        }
     }]);

@@ -7,7 +7,6 @@
 
     // api ---------------------------------------------------------------------
 
-
         // get all players
         app.get('/api/players', function(req, res) {
 
@@ -25,10 +24,13 @@
         // create player and send back all players after creation
         app.post('/api/players', function(req, res) {
 
+            var ident = (req.body.text).replace(/\s+/g, '');
+
             // create a new player, information comes from AJAX request from Angular
             Player.create({
                 text : req.body.text,
                 level : req.body.level,
+                identifier : ident,
                 done : false
             }, function(err, player) {
                 if (err)
@@ -44,7 +46,7 @@
 
         });
 
-        // delete a players
+        // delete a player
         app.delete('/api/players/:player_id', function(req, res) {
             Player.remove({
                 _id : req.params.player_id
@@ -61,12 +63,17 @@
             });
         });
 
+
+
+
         // application -------------------------------------------------------------
         app.get('/', function(req, res) {
             res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
         });
 
+
         app.get('/attendance', function(req, res) {
             res.sendfile('./public/register.html'); // load the single view file (angular will handle the page changes on the front-end)
         });
+
     };
