@@ -12,6 +12,12 @@ angular.module('attendanceService', [])
             },
             delete : function(id) {
                 return $http.delete('/api/players/' + id);
+            },
+            edit : function (id) {
+                return $http.get('/api/player/info/' + id);
+            },
+            update : function(id, editData) {
+                return $http.post('/api/player/info/' + id, editData);
             }
         }
     }])

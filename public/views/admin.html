@@ -1,50 +1,134 @@
 <!-- PLAYER LIST -->
         <div id="name-list" class="row">
             <div class="col-sm-4 col-sm-offset-4">
-
-                <div class="filterBox">
-                    <select ng-model="filterBy">
-                        <option selected="selected" value="">All</option>
-                        <option value="INT">Intermediate</option>
-                        <option value="ADV">Advanced</option>
-                    </select>
-                </div>
+                <form class="form-inline">
+                    <div class="filterBox col-sm-4">
+                        <select ng-model="filterBy">
+                            <option selected="selected" value="">All</option>
+                            <option value="INT">Intermediate</option>
+                            <option value="ADV">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="filterBox col-sm-8">
+                        <input type="text" class="filterInput" placeholder="Start typing to filter by name" ng-model="filterName" />
+                    </div>
+                </form>
 
                 <!-- LOOP OVER THE PLAYERS IN $scope.players -->
                 <table>
                     <tr>
                         <th>Delete</th>
-                        <th>Player name</th>
+                        <th class="playerName">Player name</th>
                         <th>Player level</th>
                     </tr>
-                    <tr ng-repeat="player in players | filter : { 'level' : filterBy } | orderBy : name">
-                        <td><input type="checkbox" ng-click="deletePlayer(player._id)"></td>
-                        <td>{{ player.text }}</td>
+                    <tr ng-repeat="player in players | filter : { 'level' : filterBy, 'text' : filterName } | orderBy : name">
+                        <td><input type="checkbox" ng-click="showModal( player._id , player.text )"></td>
+                        <td><a href="" ng-click="editModal( player._id , player.text )">{{ player.text }}</a></td>
                         <td>{{ player.level }}</td>
-                        <td>{{ player.identifier }}</td>
+                        <td class="ng-hide">{{ player.identifier }}</td>
                     </tr>
                 </table>
-
+                <div class="text-center">
+                    <p><i>Click on a player's name to edit their details</i></p>
+                </div>
             </div>
         </div>
 
         <!-- FORM TO CREATE PLAYERS -->
-         <div class="jumbotron text-center">
+         <div class="text-center">
             <h1>Add a player</h1>
         </div>
 
         <div id="todo-form" class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
-                <form>
-                    <div class="form-group">
-
+                <form class="form-inline">
+                    <div class="form-group col-sm-7">
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-md text-center" placeholder="Player name" ng-model="formData.text">
-                        <input type="text" class="form-control input-sm text-center" placeholder="Level" ng-model="formData.level">
+                        <input type="text" class="form-control input-md" placeholder="Player name" ng-model="formData.text">
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        <select class="form-control input-md" placeholder="Level" ng-model="formData.level">
+                            <option value="">Level</option>
+                            <option value="INT">INT</option>
+                            <option value="ADV">ADV</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <button type="submit" class="btn btn-primary btn-md btn-block" ng-click="createPlayer()">Add</button>
                     </div>
 
                     <!-- createToDo() WILL CREATE NEW PLAYERS -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createPlayer()">Add</button>
+
+                    <div id="validation">
+                        <p><strong>Please fill out all fields</strong></p>
+                    </div>
+
                 </form>
             </div>
+
+        </div>
+
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="row text-center">
+                <a href="/#/"><button class="btn btn-lg btn-primary btn-block">Back to home</button></a>
+            </div>
+            <div class="row text-center">
+                <a href="/#/attendance"><button class="btn btn-lg btn-primary btn-block">Attendance page</button></a>
+            </div>
+        </div>
+
+
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Are you sure you want to delete {{ name }}?</h4>
+              </div>
+              <div class="modal-body">
+                    <p>Click "Delete" to delete the player and "Cancel" to close this message.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="deletePlayer(id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EditModal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{playerName}}</h4>
+              </div>
+              <div class="modal-body">
+                    <p>Edit player details and hit "Submit changes" to save and close this window.</p>
+              </div>
+              <form class="form-inline" id="editForm">
+                    <div class="form-group col-sm-8">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-md" value="{{playerName}}" ng-model="editData.text" />
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <select class="form-control input-md" placeholder="Level" ng-model="editData.level">
+                            <option value="" disabled="disabled">Level</option>
+                            <option value="INT">INT</option>
+                            <option value="ADV">ADV</option>
+                        </select>
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW PLAYERS -->
+
+                </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="editSubmit(id, playerName, playerLevel)">Submit changes</button>
+              </div>
+            </div>
+          </div>
         </div>

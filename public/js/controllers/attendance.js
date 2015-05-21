@@ -26,6 +26,7 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
         if ($('#' + playerIdent + '2').prop('checked')) {
 
             $scope.selectionTwo.splice(idx, 1);
+            console.log('unchecked');
             $('#' + playerIdent + '2').prop('checked',false);
         }
 
@@ -80,12 +81,16 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
 
     $scope.sendEmail = function() {
 
+        var emailHead = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Really Simple HTML Email Template</title>"'
+
+        var emailFoot = '</body></html>'
+
         console.log('sending started');
         var from,to,subject,text;
 
         to=$("#to").val();
         subject=$("#subject").val();
-        text=$("#test").html();
+        text= emailHead + $("#test").html() + emailFoot;
         console.log(text);
         $("#message").text("Sending E-mail...Please wait");
         $.get("/send",{to:to,subject:subject,text:text},function(data){

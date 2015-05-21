@@ -37,7 +37,7 @@
         var mailOptions={
             to : req.query.to,
             subject : req.query.subject,
-            text : req.query.text
+            html : req.query.text
         }
         smtpTransport.sendMail(mailOptions, function(error, response){
             if(error) {

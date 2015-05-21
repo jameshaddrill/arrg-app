@@ -12,12 +12,11 @@
 
         <!-- LOOP OVER THE PLAYERS IN $scope.players -->
         <table>
-            <tr class="checkbox" ng-repeat="player in players | filter : { 'level' : filterBy }">
+            <tr class="checkbox" ng-repeat="player in players" ng-show="([player] | filter : { 'level' : filterBy }).length > 0">
                 <td><input type="checkbox" value="1" ng-click="toggleSelectionOne(player.text)" id="{{ player.identifier }}1" /></td>
                 <td><input type="checkbox" value="2" ng-click="toggleSelectionTwo(player.text)" id="{{ player.identifier }}2" /></td>
                 <td>{{ player.text }}</td>
                 <td>{{ player.level }}</td>
-                <td>{{ player.identifier }}</td>
             </tr>
         </table>
 
