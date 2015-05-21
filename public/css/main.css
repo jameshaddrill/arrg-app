@@ -31,10 +31,19 @@ table td, table th {
 	border: 1px solid #000;
 	min-width: 100px;
 	text-align: center;
+	min-width: 0;
+}
+
+table.attendanceTable td, table.attendanceTable th {
+	border-width: 0 0 1px;
 }
 
 	table th.playerName {
-		min-width: 200px;
+		min-width: 300px;
+	}
+
+	table.attendanceTable td.checkboxCell {
+		width: 60px;
 	}
 
 .checkbox {

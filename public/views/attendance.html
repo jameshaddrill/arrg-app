@@ -1,6 +1,6 @@
 <!-- PLAYER LIST -->
 <div id="name-list" class="row">
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-sm-8 col-sm-offset-2">
 
         <div class="filterBox">
             <select ng-model="filterBy">
@@ -9,18 +9,26 @@
                 <option value="ADV">Advanced</option>
             </select>
         </div>
-
-        <!-- LOOP OVER THE PLAYERS IN $scope.players -->
-        <table>
-            <tr class="checkbox" ng-repeat="player in players" ng-show="([player] | filter : { 'level' : filterBy }).length > 0">
-                <td><input type="checkbox" value="1" ng-click="toggleSelectionOne(player.text)" id="{{ player.identifier }}1" /></td>
-                <td><input type="checkbox" value="2" ng-click="toggleSelectionTwo(player.text)" id="{{ player.identifier }}2" /></td>
-                <td>{{ player.text }}</td>
-                <td>{{ player.level }}</td>
-            </tr>
-        </table>
-
-        <button ng-click="addAttendance()" class="btn btn-primary btn-block">Submit attendance</button>
+         <div class="row">
+            <!-- LOOP OVER THE PLAYERS IN $scope.players -->
+            <table class="attendanceTable">
+                <tr>
+                    <th>1 point</th>
+                    <th>2 points</th>
+                    <th class="playerName">Player name</th>
+                    <th>Level</th>
+                </tr>
+                <tr ng-repeat="player in players" ng-show="([player] | filter : { 'level' : filterBy }).length > 0">
+                    <td class="checkboxCell"><input type="checkbox" value="1" ng-click="toggleSelectionOne(player.text)" id="{{ player.identifier }}1" /></td>
+                    <td class="checkboxCell"><input type="checkbox" value="2" ng-click="toggleSelectionTwo(player.text)" id="{{ player.identifier }}2" /></td>
+                    <td>{{ player.text }}</td>
+                    <td>{{ player.level }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <button ng-click="addAttendance()" class="btn btn-primary btn-block">Submit attendance</button>
+        </div>
 
         <div id="test">
             <table class="table1">
