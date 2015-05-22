@@ -19,7 +19,7 @@ body {
 	margin-bottom: 20px;
 }
 
-.filterBox .filterInput {
+.filterBox .filterInput, textarea {
 	width: 100%
 }
 
@@ -36,7 +36,7 @@ table td, table th {
 	min-width: 0;
 }
 
-table.attendanceTable td, table.attendanceTable th {
+table td, table th {
 	border-width: 0 0 1px;
 	padding-top: 8px;
 	padding-bottom: 8px;
@@ -66,6 +66,14 @@ table.attendanceTable td, table.attendanceTable th {
 }
 
 .sendEmail {
+	display: none;
+}
+
+.tables {
+	margin-bottom: 20px;
+}
+
+#attendanceTables {
 	display: none;
 }
 

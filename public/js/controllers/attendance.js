@@ -62,21 +62,24 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
     };
 
     $scope.addAttendance = function() {
-        $("#test .table1").html('');
-        $("#test .table2").html('');
+        $("#attendanceTables .table1").html('');
+        $("#attendanceTables .table2").html('');
         // one point table
         var onePoint = $scope.selectionOne;
         var arrayLength = parseInt(onePoint.length);
         for (i=0; i<arrayLength; i++) {
-            $("#test .table1").append('<tr><td>'+onePoint[i]+'</td><td>One Point</td></tr>')
+            $("#attendanceTables .table1").append('<tr><td style="border-bottom: 1px solid #000">'+onePoint[i]+'</td><td style="border-bottom: 1px solid #000">1 Point</td></tr>')
         }
 
         // two point table
         var twoPoint = $scope.selectionTwo;
         var arrayLength = parseInt(twoPoint.length);
         for (i=0; i<arrayLength; i++) {
-            $("#test .table2").append('<tr><td>'+twoPoint[i]+'</td><td>Two Points</td></tr>')
+            $("#attendanceTables .table2").append('<tr><td style="border-bottom: 1px solid #000">'+twoPoint[i]+'</td><td style="border-bottom: 1px solid #000">2 Points</td></tr>')
         }
+
+        // show tables region
+        $('#attendanceTables').show();
 
         // show 'send email' button
         $('.sendEmail').show();
@@ -86,31 +89,32 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
 
         // get date for email subject
         var d = new Date();
-
         var month = d.getMonth()+1;
         var day = d.getDate();
-
         var output = d.getFullYear() + '/' +
         (month<10 ? '0' : '') + month + '/' +
         (day<10 ? '0' : '') + day;
 
+        // create subject
         var subject = "ARRG Training Attendance " + output;
 
-        var emailHead = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Really Simple HTML Email Template</title>"'
-
-        var emailFoot = '</body></html>'
+        // get concatenated tables + notes for email body
+        var emailHead = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Really Simple HTML Email Template</title>';
+        var emailFoot = '</body></html>';
+        var emailContent =  emailHead + ($("#attendanceTables .tables").html()) + '<p>' + $('#notes').val() + '</p>' + emailFoot;
 
         console.log('sending started');
         var from,to,subject,text;
 
+        // email variables
         to=$("#to").val();
         subject= subject;
-        text= emailHead + $("#test").html() + emailFoot;
+        text= emailContent;
         console.log(text);
         $("#message").text("Sending E-mail...Please wait");
         $.get("/send",{to:to,subject:subject,text:text},function(data){
             if(data=="sent") {
-                $("#message").empty().html("Email is been sent.");
+                $("#message").empty().html("Email has been sent.");
             }
         });
 
