@@ -4,6 +4,7 @@ ehthumbs.db
 
 #embedded app (fix!)
 /arrg-attendance/
+/node_modules/nodemailer/
 
 # Folder config file
 Desktop.ini
