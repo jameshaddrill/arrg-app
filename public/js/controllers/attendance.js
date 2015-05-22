@@ -68,14 +68,14 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
         var onePoint = $scope.selectionOne;
         var arrayLength = parseInt(onePoint.length);
         for (i=0; i<arrayLength; i++) {
-            $("#attendanceTables .table1").append('<tr><td style="border-bottom: 1px solid #000">'+onePoint[i]+'</td><td style="border-bottom: 1px solid #000">1 Point</td></tr>')
+            $("#attendanceTables .table1").append('<tr><td>'+onePoint[i]+'</td><td>1 Point</td></tr>')
         }
 
         // two point table
         var twoPoint = $scope.selectionTwo;
         var arrayLength = parseInt(twoPoint.length);
         for (i=0; i<arrayLength; i++) {
-            $("#attendanceTables .table2").append('<tr><td style="border-bottom: 1px solid #000">'+twoPoint[i]+'</td><td style="border-bottom: 1px solid #000">2 Points</td></tr>')
+            $("#attendanceTables .table2").append('<tr><td>'+twoPoint[i]+'</td><td>2 Points</td></tr>')
         }
 
         // show tables region
