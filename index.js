@@ -36,7 +36,7 @@
     app.get('/send', function(req, res) {
         var mailOptions={
             to : "jameshaddrill@gmail.com",
-            subject : "ARRG training attendance",
+            subject : req.query.subject,
             html : req.query.text
         }
         smtpTransport.sendMail(mailOptions, function(error, response){

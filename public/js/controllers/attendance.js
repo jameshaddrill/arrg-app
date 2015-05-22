@@ -77,6 +77,9 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
         for (i=0; i<arrayLength; i++) {
             $("#test .table2").append('<tr><td>'+twoPoint[i]+'</td><td>Two Points</td></tr>')
         }
+
+        // show 'send email' button
+        $('.sendEmail').show();
     };
 
     $scope.sendEmail = function() {
@@ -91,8 +94,7 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
         (month<10 ? '0' : '') + month + '/' +
         (day<10 ? '0' : '') + day;
 
-        console.log(output);
-
+        var subject = "ARRG Training Attendance " + output;
 
         var emailHead = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Really Simple HTML Email Template</title>"'
 
@@ -102,13 +104,13 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
         var from,to,subject,text;
 
         to=$("#to").val();
-        subject=$("#subject").val();
+        subject= subject;
         text= emailHead + $("#test").html() + emailFoot;
         console.log(text);
         $("#message").text("Sending E-mail...Please wait");
         $.get("/send",{to:to,subject:subject,text:text},function(data){
             if(data=="sent") {
-                $("#message").empty().html("Email is been sent at "+to+" . Please check inbox !");
+                $("#message").empty().html("Email is been sent.");
             }
         });
 

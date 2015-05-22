@@ -25,6 +25,8 @@ body {
 
 table {
 	margin-top: 20px;
+	margin: 0 auto;
+	width: 100%;
 }
 
 table td, table th {
@@ -36,14 +38,16 @@ table td, table th {
 
 table.attendanceTable td, table.attendanceTable th {
 	border-width: 0 0 1px;
+	padding-top: 8px;
+	padding-bottom: 8px;
 }
 
 	table th.playerName {
-		min-width: 300px;
+		max-width: 100px;
 	}
 
-	table.attendanceTable td.checkboxCell {
-		width: 60px;
+	.table1 {
+		margin-bottom: 10px;
 	}
 
 .checkbox {
@@ -59,4 +63,22 @@ table.attendanceTable td, table.attendanceTable th {
 
 #validation {
 	display: none;
+}
+
+.sendEmail {
+	display: none;
+}
+
+@media(min-width:500px) {
+	table.attendanceTable td.checkboxCell {
+		width: 60px;
+	}
+	table th.playerName {
+		min-width: 300px;
+		max-width: 100%;
+	}
+	.table1 {
+		margin-bottom: 0;
+	}
+
 }

@@ -9,6 +9,7 @@
                 <option value="ADV">Advanced</option>
             </select>
         </div>
+
          <div class="row">
             <!-- LOOP OVER THE PLAYERS IN $scope.players -->
             <table class="attendanceTable">
@@ -18,7 +19,7 @@
                     <th class="playerName">Player name</th>
                     <th>Level</th>
                 </tr>
-                <tr ng-repeat="player in players" ng-show="([player] | filter : { 'level' : filterBy }).length > 0">
+                <tr ng-repeat="player in players" ng-show="([player] | filter : { 'level' : filterBy }).length > 0  | orderBy : name">
                     <td class="checkboxCell"><input type="checkbox" value="1" ng-click="toggleSelectionOne(player.text)" id="{{ player.identifier }}1" /></td>
                     <td class="checkboxCell"><input type="checkbox" value="2" ng-click="toggleSelectionTwo(player.text)" id="{{ player.identifier }}2" /></td>
                     <td>{{ player.text }}</td>
@@ -27,32 +28,32 @@
             </table>
         </div>
         <div class="row">
-            <button ng-click="addAttendance()" class="btn btn-primary btn-block">Submit attendance</button>
-        </div>
-
-        <div id="test">
-            <table class="table1">
-            </table>
-
-            <table class="table2">
-            </table>
-        </div>
-
-
-
-
-
-        <div id="container">
-            <div></div>
-            Node.JS Email application
-            <div>
-            <h1>Mailer In Node.JS</h1>
-            <input id="to" type="text" placeholder="Enter E-mail ID where you want to send" />
-            <input id="subject" type="text" placeholder="Write Subject" />
-            <textarea id="content" cols="40" rows="5" placeholder="Write what you want to send"></textarea>
-            <button id="send_email" ng-click="sendEmail()">Send Email</button>
-            <span id="message"></span>
+            <div class="col-sm-12">
+                <button ng-click="addAttendance()" class="btn btn-primary btn-block">Submit attendance</button>
             </div>
+        </div>
+        <div class="row">
+            <div id="test">
+                <div class="col-md-6">
+                    <table class="table1">
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="table2">
+                    </table>
+                </div>
+            </div>
+        </div>
 
-    </div>
+
+
+
+        <div class="row sendEmail">
+            <div class="col-sm-12">
+            <button id="send_email" class="btn btn-block btn-primary" ng-click="sendEmail()">Send Email</button>
+            </div>
+        </div>
+        <div class="row text-center">
+            <span id="message"></span>
+       </div>
 </div>
