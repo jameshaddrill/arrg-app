@@ -1,0 +1,86 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html>
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>ARRG Attendance</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="./css/main.css"><!-- custome styles -->
+
+    <!-- SCRIPTS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script><!-- load angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><!-- bootstrap js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script><!-- json3 plugin -->
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/attendance.js"></script>
+    <script src="js/services/players.js"></script>
+    <script src="js/appRoutes.js"></script>
+
+    <script src="js/core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL PLAYERS -->
+<body ng-app="arrgAttendance" ng-controller="HomeController">
+    <div class="container">
+        <!-- ANGULAR DYNAMIC CONTENT -->
+
+        <!-- HEADER -->
+        <div class="text-center">
+            <h1>Attendance Manager</h1>
+        </div>
+
+        <div ng-view></div>
+
+        <!--
+        <!-- PLAYER LIST
+        <div id="name-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- LOOP OVER THE PLAYERS IN $scope.players
+                <div class="checkbox" ng-repeat="player in players">
+                    <label>
+                        <input type="checkbox" ng-click="deletePlayer(player._id)"> {{ player.text }} {{player.level }}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FORM TO CREATE PLAYERS
+         <div class="jumbotron text-center">
+            <h1>Add a player</h1>
+        </div>
+
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR
+                        <input type="text" class="form-control input-md text-center" placeholder="Player name" ng-model="formData.text">
+                        <input type="text" class="form-control input-sm text-center" placeholder="Level" ng-model="formData.level">
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW PLAYERS
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createPlayer()">Add</button>
+                </form>
+            </div>
+        </div> -->
+
+    </div>
+
+</body>
+</html>
