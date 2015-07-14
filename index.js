@@ -1,6 +1,6 @@
 // https://devcenter.heroku.com/articles/getting-started-with-nodejs
 // https://devcenter.heroku.com/articles/getting-started-with-nodejs#push-local-changes
-// https://scotch.io/tutorials/creating-a-single-page--app-with-node-and-angular
+// https://scotch.io/tutorials/setting-up-a-mean-stack-single-page-application
 
 
 // server.js

@@ -1,5 +1,6 @@
 // routes ======================================================================
 
+    // get the Player model and store it in variable
     var Player = require('./models/models.js')
 
     // expose the routes to our app with module.exports
@@ -93,23 +94,6 @@
             });
 
         });
-/*
-            Player.findOneAndUpdate( query, {
-                text : req.body.text,
-                level : req.body.level,
-                indentifier : ident
-            }, function(err, player) {
-                if (err)
-                    res.send(err);
-
-                // get and return all the players after you edit this one
-                Player.find(function(err, players) {
-                    if (err)
-                        res.send(err)
-                    res.json(players);
-                });
-            });
-        });*/
 
         // application -------------------------------------------------------------
         app.get('/', function(req, res) {
