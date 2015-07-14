@@ -76,7 +76,6 @@
 
         // update a player's details
         app.post('/api/player/info/:player_id', function(req,res) {
-            //var ident = (req.body.text).replace(/\s+/g, '');
 
             Player.findOneAndUpdate( { _id : req.params.player_id }, {
                 text : req.body.text,

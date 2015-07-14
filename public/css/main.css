@@ -20,7 +20,13 @@ body {
 }
 
 .filterBox .filterInput, textarea {
-	width: 100%
+	width: 100%;
+	resize: none;
+}
+
+textarea {
+	border: 1px solid #ccc;
+	padding: 8px;
 }
 
 table {

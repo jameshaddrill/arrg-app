@@ -1,6 +1,5 @@
 // https://devcenter.heroku.com/articles/getting-started-with-nodejs
 // https://devcenter.heroku.com/articles/getting-started-with-nodejs#push-local-changes
-
 // https://scotch.io/tutorials/creating-a-single-page--app-with-node-and-angular
 
 
@@ -26,13 +25,14 @@
     // http://codeforgeek.com/2014/07/send-e-mail-node-js/
     // http://blog.ijasoneverett.com/2013/07/emailing-in-node-js-with-nodemailer/
     var smtpTransport = nodemailer.createTransport("SMTP",{
-       service: "Gmail",  // sets automatically host, port and connection security settings
+       service: "gmail",  // sets automatically host, port and connection security settings
        auth: {
-           user: "jameshaddrill@gmail.com",
-           pass: "djkh4882"
+           user: "arrgattendancemanager@gmail.com",
+           pass: "4rrg-attendance"
        }
     });
 
+    // sending email
     app.get('/send', function(req, res) {
         var mailOptions={
             to : "jameshaddrill@gmail.com",
@@ -56,7 +56,7 @@
     });
 
 
-
+    // mongoose  =================
 
     mongoose.connect(database.url);     // connect to mongoDB database
 
