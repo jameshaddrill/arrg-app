@@ -18,6 +18,7 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
     $scope.selectionOne = [];
     $scope.selectionTwo = [];
 
+    // toggle selection - can't be in both columns
     $scope.toggleSelectionOne = function toggleSelection(playerName) {
 
         var idx = $scope.selectionOne.indexOf(playerName);
@@ -41,6 +42,7 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
 
     };
 
+    // toggle selection - can't be in both columns
     $scope.toggleSelectionTwo = function toggleSelection(playerName) {
 
         var idx = $scope.selectionTwo.indexOf(playerName);

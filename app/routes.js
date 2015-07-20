@@ -1,6 +1,6 @@
 // routes ======================================================================
 
-    // get the Player model and store it in variable
+    // get the Player model from MongoDB and store it in variable
     var Player = require('./models/models.js')
 
     // expose the routes to our app with module.exports
