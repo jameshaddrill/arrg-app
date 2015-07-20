@@ -1,7 +1,10 @@
 <!-- PLAYER LIST -->
-<div id="name-list" class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-
+<div id="name-list" class="row attendanceFilter">
+    <div class="col-sm-4 col-sm-offset-2 ">
+        <p><a href="/">&laquo; Back to home</a></p>
+    </div>
+    <div class="col-sm-4 filterSelect">
+        <h4 class="filterTitle">Filter by: </h4>
         <div class="filterBox">
             <select ng-model="filterBy">
                 <option selected="selected" value="">All</option>
@@ -9,7 +12,8 @@
                 <option value="ADV">Advanced</option>
             </select>
         </div>
-
+    </div>
+    <div class="col-sm-8 col-sm-offset-2">
          <div class="row">
             <!-- LOOP OVER THE PLAYERS IN $scope.players -->
             <table class="attendanceTable">
@@ -68,4 +72,5 @@
         <div class="row text-center">
             <span id="message"></span>
        </div>
+    </div>
 </div>

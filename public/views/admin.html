@@ -1,17 +1,26 @@
 <!-- PLAYER LIST -->
-        <div id="name-list">
+        <div id="name-list" class="clearfix">
+            <div class="col-sm-12 text-center subhead">
+                <div class="row">
+                    <h3>Player admin</h3>
+                </div>
+            </div>
             <div class="col-md-8 col-md-offset-2 col-sm-12">
             <div class="row">
-                <form class="form-inline">
-                    <div class="filterBox col-sm-4">
-                        <select ng-model="filterBy">
-                            <option selected="selected" value="">All</option>
-                            <option value="INT">Intermediate</option>
-                            <option value="ADV">Advanced</option>
-                        </select>
-                    </div>
-                    <div class="filterBox col-sm-8">
-                        <input type="text" class="filterInput" placeholder="Start typing to filter by name" ng-model="filterName" />
+                <form class="form-inline attendanceFilter">
+                    <div class="row">
+                        <div class="filterBox col-sm-4 filterSelect">
+
+                            <h4 class="filterTitle">Filter by: </h4>
+                            <select ng-model="filterBy">
+                                <option selected="selected" value="">All</option>
+                                <option value="INT">Intermediate</option>
+                                <option value="ADV">Advanced</option>
+                            </select>
+                        </div>
+                        <div class="filterBox col-sm-8">
+                                <input type="text" class="filterInput" placeholder="Start typing to filter by name" ng-model="filterName" />
+                        </div>
                     </div>
                 </form>
             </div>
@@ -38,41 +47,40 @@
         </div>
 
         <!-- FORM TO CREATE PLAYERS -->
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="text-center">
+        <div class="well clearfix">
+            <div class="col-sm-12 text-center">
+
                     <h1>Add a player</h1>
+            </div>
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <div class="row">
+
+                    <form class="form-inline">
+                        <div class="form-group col-sm-7">
+                            <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                            <input type="text" class="form-control input-md" placeholder="Player name" ng-model="formData.text">
+                        </div>
+                        <div class="form-group  col-sm-2">
+                            <select class="form-control input-md" placeholder="Level" ng-model="formData.level">
+                                <option value="">Level</option>
+                                <option value="INT">INT</option>
+                                <option value="ADV">ADV</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <button type="submit" class="btn btn-primary btn-md btn-block" ng-click="createPlayer()">Add</button>
+                        </div>
+
+                        <!-- createToDo() WILL CREATE NEW PLAYERS test test -->
+
+                        <div id="validation">
+                            <p><strong>Please fill out all fields</strong></p>
+                        </div>
+
+                    </form>
                 </div>
+
             </div>
-        </div>
-        <div class="col-sm-8 col-sm-offset-2 text-center">
-            <div class="row">
-
-                <form class="form-inline">
-                    <div class="form-group col-sm-7">
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-md" placeholder="Player name" ng-model="formData.text">
-                    </div>
-                    <div class="form-group  col-sm-2">
-                        <select class="form-control input-md" placeholder="Level" ng-model="formData.level">
-                            <option value="">Level</option>
-                            <option value="INT">INT</option>
-                            <option value="ADV">ADV</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-3">
-                        <button type="submit" class="btn btn-primary btn-md btn-block" ng-click="createPlayer()">Add</button>
-                    </div>
-
-                    <!-- createToDo() WILL CREATE NEW PLAYERS test test -->
-
-                    <div id="validation">
-                        <p><strong>Please fill out all fields</strong></p>
-                    </div>
-
-                </form>
-            </div>
-
         </div>
 
         <div class="col-sm-8 col-sm-offset-2">
@@ -116,12 +124,12 @@
               <div class="modal-body">
                     <p>Edit player details and hit "Submit changes" to save and close this window.</p>
               </div>
-              <form class="form-inline" id="editForm">
+              <form class="form-inline clearfix" id="editForm">
                     <div class="form-group col-sm-8">
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
                         <input type="text" class="form-control input-md" value="{{playerName}}" ng-model="editData.text" />
                     </div>
-                    <div class="form-group col-sm-2">
+                    <div class="form-group col-sm-3">
                         <select class="form-control input-md" placeholder="Level" ng-model="editData.level">
                             <option value="" disabled="disabled">Level</option>
                             <option value="INT">INT</option>

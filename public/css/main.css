@@ -3,11 +3,15 @@ html {
 }
 
 body {
-	padding-top:50px;
+	padding-top:20px;
 }
 
 .row {
-	margin-top: 30px;
+	margin-top: 10px;
+}
+
+.btn, button {
+	outline: none !important;
 }
 
 #name-list {
@@ -82,10 +86,32 @@ table td, table th {
 #attendanceTables {
 	display: none;
 }
+.attendanceTable {
+	margin-bottom: 30px;
+}
+
+.attendanceFilter {
+	text-align: center;
+}
+
+.filterTitle {
+	line-height: 1.5em;
+}
+.filterBox select, .filterBox input {
+	width: 100%;
+	height: 2em;
+}
+.filterBox input {
+	padding: 10px;
+}
+.subhead h3 {
+	margin: 0 0 30px;
+}
+
 
 @media(min-width:500px) {
 	table.attendanceTable td.checkboxCell {
-		width: 60px;
+		width: 70px;
 	}
 	table th.playerName {
 		min-width: 300px;
@@ -94,5 +120,20 @@ table td, table th {
 	.table1 {
 		margin-bottom: 0;
 	}
-
+	.filterBox {
+		float: right;
+	}
+	.filterTitle {
+	display: inline;
+	margin-right: 20px;
+	}
+	.filterBox select, .filterBox input {
+		width: auto;
+	}
+	.attendanceFilter {
+		text-align: left;
+	}
+	.filterSelect {
+		text-align: right;
+	}
 }
