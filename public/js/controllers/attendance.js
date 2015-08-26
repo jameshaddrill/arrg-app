@@ -1,5 +1,5 @@
 angular.module('AttendanceCtrl', []).controller('AttendanceController', function($scope, Players, Email) {
-
+    var trainingLevel = '';
 
     $scope.formData = {};
 
@@ -18,8 +18,6 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
     $scope.selectionOne = [];
     $scope.selectionTwo = [];
 
-    // ordering
-    $scope.orderProperty = "player.text"
 
     // toggle selection - can't be in both columns
     $scope.toggleSelectionOne = function toggleSelection(playerName) {
@@ -67,6 +65,19 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
     };
 
     $scope.addAttendance = function() {
+         // get date for email subject
+        var d = new Date();
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var output = (day<10 ? '0' : '') + day + '/' +
+        (month<10 ? '0' : '') + month + '/' +
+        d.getFullYear();
+
+        $('#attendanceTitle').html("Attendance on " + output);
+
+        var trainingLevel = $("input[name='level']:checked").val();
+        $('#attendanceLevel').html(trainingLevel + ' training');
+
         $("#attendanceTables .table1").html('');
         $("#attendanceTables .table2").html('');
         // one point table
@@ -91,6 +102,7 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
     };
 
     $scope.sendEmail = function() {
+        var level = $("input[name='level']:checked").val();
 
         // get date for email subject
         var d = new Date();
@@ -102,7 +114,7 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
 
 
         // create subject
-        var subject = "ARRG Training Attendance " + output;
+        var subject = "ARRG " + level + " Training Attendance " + output;
 
         // get concatenated tables + notes for email body
         var emailHead = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Really Simple HTML Email Template</title>';

@@ -64,11 +64,25 @@ table td, table th {
 	padding: 0;
 }
 
+
 .checkbox input[type='checkbox'] {
 	margin: 0 0 10px;
 	display: inline-block;
 	float: none;
 	padding: 0;
+}
+
+.trainingType {
+	text-align: center;
+}
+
+.trainingType label {
+	margin: 0 15px 0 10px;
+	font-size: 18px;
+}
+
+.trainingType input[type='radio'] {
+	margin-right: 10px;
 }
 
 #validation {
@@ -81,6 +95,10 @@ table td, table th {
 
 .tables {
 	margin-bottom: 20px;
+}
+
+#attendanceType {
+	text-align: center;
 }
 
 #attendanceTables {
