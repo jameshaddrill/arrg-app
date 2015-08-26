@@ -18,6 +18,9 @@ angular.module('AttendanceCtrl', []).controller('AttendanceController', function
     $scope.selectionOne = [];
     $scope.selectionTwo = [];
 
+    // ordering
+    $scope.orderProperty = "player.text"
+
     // toggle selection - can't be in both columns
     $scope.toggleSelectionOne = function toggleSelection(playerName) {
 

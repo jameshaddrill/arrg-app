@@ -29,15 +29,13 @@
        auth: {
            user: "arrgattendancemanager@gmail.com",
            pass: "4rrg-attendance"
-           //user: "jameshaddrill@gmail.com",
-           //pass: "djkh4882"
        }
     });
 
     // sending email
     app.get('/send', function(req, res) {
         var mailOptions={
-            to : "jameshaddrill@gmail.com",
+            to : "catriona.gilbert@gmail.com",
             subject : req.query.subject,
             html : req.query.text
         }

@@ -10,6 +10,8 @@
                 <option selected="selected" value="">All</option>
                 <option value="INT">Intermediate</option>
                 <option value="ADV">Advanced</option>
+                <option value="REC">Rec</option>
+                <option value="REF">Ref</option>
             </select>
         </div>
     </div>
@@ -18,14 +20,14 @@
             <!-- LOOP OVER THE PLAYERS IN $scope.players -->
             <table class="attendanceTable">
                 <tr>
-                    <th>1 point</th>
                     <th>2 points</th>
+                    <th>1 point</th>
                     <th class="playerName">Player name</th>
                     <th>Level</th>
                 </tr>
-                <tr ng-repeat="player in players" ng-show="([player] | filter : { 'level' : filterBy }).length > 0  | orderBy : name">
-                    <td class="checkboxCell"><input type="checkbox" value="1" ng-click="toggleSelectionOne(player.text)" id="{{ player.identifier }}1" /></td>
+                <tr ng-repeat="player in players | orderBy: 'text'" ng-show="([player] | filter : { 'level' : filterBy }).length > 0">
                     <td class="checkboxCell"><input type="checkbox" value="2" ng-click="toggleSelectionTwo(player.text)" id="{{ player.identifier }}2" /></td>
+                    <td class="checkboxCell"><input type="checkbox" value="1" ng-click="toggleSelectionOne(player.text)" id="{{ player.identifier }}1" /></td>
                     <td>{{ player.text }}</td>
                     <td>{{ player.level }}</td>
                 </tr>
@@ -37,16 +39,16 @@
             </div>
         </div>
         <div class="row">
-            <div id="attendanceTables">
+            <div id="attendanceTables" class="well">
                 <div class="tables clearfix">
-                    <div class="col-md-6">
-                        <h3>One point</h2>
-                        <table class="table1">
-                        </table>
-                    </div>
                     <div class="col-md-6">
                         <h3>Two points</h2>
                         <table class="table2">
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>One point</h2>
+                        <table class="table1">
                         </table>
                     </div>
                 </div>

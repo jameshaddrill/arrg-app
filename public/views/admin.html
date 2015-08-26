@@ -16,6 +16,8 @@
                                 <option selected="selected" value="">All</option>
                                 <option value="INT">Intermediate</option>
                                 <option value="ADV">Advanced</option>
+                                <option value="REC">Rec</option>
+                                <option value="ADV">Ref</option>
                             </select>
                         </div>
                         <div class="filterBox col-sm-8">
@@ -32,7 +34,7 @@
                         <th class="playerName">Player name</th>
                         <th>Player level</th>
                     </tr>
-                    <tr ng-repeat="player in players | filter : { 'level' : filterBy, 'text' : filterName } | orderBy : name">
+                    <tr ng-repeat="player in players | orderBy : text | filter : { 'level' : filterBy, 'text' : filterName }">
                         <td><input type="checkbox" ng-click="showModal( player._id , player.text )"></td>
                         <td><a href="" ng-click="editModal( player._id , player.text )">{{ player.text }}</a></td>
                         <td>{{ player.level }}</td>
@@ -65,6 +67,8 @@
                                 <option value="">Level</option>
                                 <option value="INT">INT</option>
                                 <option value="ADV">ADV</option>
+                                <option value="REC">REC</option>
+                                <option value="ADV">REF</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-3">
